@@ -5,6 +5,9 @@ The tests illustrate some commonalities and differences.
 
 ## Getting Started
 
+I use [pyenv](https://github.com/pyenv/pyenv) and [pipenv](https://pypi.python.org/pypi/pipenv) to easily switch between projects using different Python versions and dependencies.
+If that's not your thing, you can just run `pip install attrs` and `pip install pytest` and ignore everything below.
+
 1. Install [pyenv](https://github.com/pyenv/pyenv), a tool for managing [Python](https://www.python.org/) versions.
 1. The file `.python-version` in the root folder specifies the Python version required for this project.
   Navigate to the root folder and execute `pyenv install` to install this Python version.
