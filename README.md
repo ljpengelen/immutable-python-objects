@@ -1,5 +1,8 @@
 # Immutable Objects in Python
 
+The code in this repository demonstrates three ways of defining (near) immutable objects in Python.
+The tests illustrate some commonalities and differences.
+
 ## Getting Started
 
 1. Install [pyenv](https://github.com/pyenv/pyenv), a tool for managing [Python](https://www.python.org/) versions.
