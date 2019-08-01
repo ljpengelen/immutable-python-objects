@@ -6,6 +6,8 @@ I'm happy to trade a few CPU cycles for a reduced demand of brain power.
 Because we're talking about Python here, and [we're all responsible users](https://docs.python-guide.org/writing/style/#we-are-all-responsible-users), it's impossible to create actual *objects* that are *impossible* to mutate.
 You can, however, create things that behave like objects that are impossible to mutate or actual objects that cannot be mutated by mistake.
 
+Let’s look at three ways to do this and how they differ.
+
 ## Named Tuples
 
 The Python project I'm currently working on started before [data classes](https://docs.python.org/3/library/dataclasses.html) were available.
@@ -23,6 +25,10 @@ class Point(namedtuple("_Point", ["x", "y"])):
     def translate(self, dx, dy):
         return Point(self.x + dx, self.y + dy)
 ```
+
+It's a class for points in two-dimensional space.
+When you call the `scale` or `translate` method, a new point is returned.
+This variant of the class extends a named tuple `_Point` consisting of two fields named `x` and `y`.
 
 When you try to mutate an instance of this class, you'll be greeted with an `AttributeError`:
 
@@ -74,6 +80,7 @@ class Point:
         return Point(self.x + dx, self.y + dy)
 ```
 
+In this case, the decorator `@attr.s(frozen=True)` dictates that values of `x` and `y` cannot be changed by simple assignments.
 This behaves like you expect it to:
 
 ```sh
@@ -129,6 +136,7 @@ class Point:
         return Point(self.x + dx, self.y + dy)
 ```
 
+Here, the decorator `@dataclass(frozen=True)` dictates that the values of `x` and `y` cannot be changed by simple assignments.
 This also behaves like you would expect:
 
 ```sh
@@ -155,7 +163,11 @@ False
 
 You can mutate instances in the same way as above, but I won't believe you if say you did this by mistake.
 
-## Playground
+## Conclusion
 
 If you want to play around with these variants, you could use the Python shell.
 You could also take a look at the following repo: [https://github.com/ljpengelen/immutable-python-objects](https://github.com/ljpengelen/immutable-python-objects).
+
+My personal conclusion after reviewing these variants is that I won't replace all the named tuples in existing projects just yet.
+I don't expect to get burned by the unfortunate behavior concerning equality.
+For future projects, however, I'll probably go with data classes.
