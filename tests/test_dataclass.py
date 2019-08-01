@@ -12,3 +12,10 @@ def test_is_immutable(point):
         point.x = 50
     with pytest.raises(AttributeError):
         point.y = 60
+
+
+def test_equality(point):
+    assert point == Point(30, 40)
+    assert point != Point(40, 30)
+
+    assert point != (30, 40)
