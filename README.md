@@ -29,6 +29,7 @@ It can be deactivated by executing `exit`.
 ## Tests
 
 Execute `pytest` to run all tests once.
+Execute `pytest-watch` to run all tests whenever a file changes.
 
 ## Linting
 
